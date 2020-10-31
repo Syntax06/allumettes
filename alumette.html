@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Exercice formulaire fou</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script>
+    $(document).ready(function () {
+      function perdu(i) {
+        if (i >= 10) {
+          alert("tu as pris la dernière alumette, tu as perdu");
+          $("#jeu").hide();
+          $('.win').show()
+          $("#btn3").show();
+        }
+      }
+      var i = 0;
+      $(".j2").hide()
+      $('.win').hide()
+
+
+      $("#btn1").click(function () {
+        var y = i + 1;
+        for (i; i < y; i++);
+        $(".allumette" + i).hide(function () {
+          perdu(i);
+          $(".j1").toggle();
+          $(".j2").toggle();
+        });
+      });
+
+      $("#btn2").click(function () {
+        if (i < 9) {
+          var y = i + 2;
+          for (i; i < y; i++);
+          $(".allumette" + (i - 1)).hide(function () {
+            $(".allumette" + i).hide(function () {
+              perdu(i);
+              $(".j1").toggle();
+              $(".j2").toggle();
+            });
+          });
+        } else { alert("pas assez d'allumette") }
+      });
+      $("#btn3").click(function () {
+        $("body").slideUp(1000, function () {
+          location.reload();
+        });
+      });
+    });
+      /*
+
+*/
+  </script>
+</head>
+
+<body>
+  <div id="maDiv">
+    <h1>Jeu des allumettes</h1>
+    <div class="player">
+      <h2 class="j1">joueur 1 </h2>
+      <h2 class="j2">joueur 2 </h2>
+
+      <h2 class="win"> WIN</h2>
+    </div>
+    <div id="jeu">
+      <h2>le joueur qui prend la dernière allumette a perdu</h2>
+      <div id="boite">
+        <img class="allumette1" src="allumette.png" alt="" width="90" />
+        <img class="allumette2" src="allumette.png" alt="" width="90" />
+        <img class="allumette3" src="allumette.png" alt="" width="90" />
+        <img class="allumette4" src="allumette.png" alt="" width="90" />
+        <img class="allumette5" src="allumette.png" alt="" width="90" />
+        <img class="allumette6" src="allumette.png" alt="" width="90" />
+        <img class="allumette7" src="allumette.png" alt="" width="90" />
+        <img class="allumette8" src="allumette.png" alt="" width="90" />
+        <img class="allumette9" src="allumette.png" alt="" width="90" />
+        <img class="allumette10" src="allumette.png" alt="" width="90" />
+      </div>
+      <button id="btn1">enlever 1</button>
+      <button id="btn2">enlever 2</button>
+    </div>
+    <button id="btn3">rejouer</button>
+  </div>
+  <style>
+    body {
+      background-image: url(flammes.jpg);
+      background-size: cover;
+      background-repeat: no-repeat;
+      color: cornsilk;
+      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      max-height: 100%;
+    }
+
+    h1 {
+      padding-top: 90px;
+    }
+
+    #btn3 {
+      display: none;
+    }
+
+    .player {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .j1 {
+      text-align: left;
+      color: blue;
+    }
+
+    .j2 {
+      text-align: right;
+      color: red;
+    }
+
+    .win {
+      color: gold
+    }
+  </style>
+</body>
+
+</html>
